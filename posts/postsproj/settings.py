@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['157.230.48.115']
 
-
+# new commit
 # Application definition
 
 INSTALLED_APPS = [
