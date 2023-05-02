@@ -16,4 +16,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'postsproj.settings')
 application = get_wsgi_application()
 
 
-# Posts
+
+# wooow
+
+
