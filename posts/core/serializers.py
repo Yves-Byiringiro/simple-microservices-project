@@ -22,3 +22,4 @@ class EventSeriliazer(serializers.Serializer):
 
 
 
+# Posts
