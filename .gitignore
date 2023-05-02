@@ -148,6 +148,12 @@ dist
 
 
 
+
+
+
+
+
+
 ### Django ###
 *.log
 *.pot
