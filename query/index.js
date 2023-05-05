@@ -46,15 +46,14 @@ app.post("/events", async(req, res) => {
   }
 
   if (type === 'CommentCreated') {
-    const { id, content, username, postId } = data;
+    const { id, content, postId } = data;
     const findPost = await Post.findOne({
       id: postId,
     }).exec();
 
     findPost.comments.push({
       id,
-      content,
-      username
+      content
     })
     findPost.save()
   }

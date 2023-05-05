@@ -1,55 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+
+import CommentList from './CommentList';
+import CommentCreate from './CommentCreate';
 
 
 const PostList = () => {
 
-    const posts = [
-        {
-            id:1,
-            title:"First Post",
-            content: "Some quick example text to build on the card title and make up the bulk of the card's content. and make up the bulk of the card's content. and make up the bulk of the card's content.",
-            username: "Keynes"
-        },
-        {
-            id:2,
-            title:"Second Post",
-            content: "Some quick example text to build on the card title and make up the bulk of the card's content. and make up the bulk of the card's content. and make up the bulk of the card's content.",
-            username: "Yves"
-        },
-        {
-            id:3,
-            title:"Third Post",
-            content: "Some quick example text to build on the card title and make up the bulk of the card's content. and make up the bulk of the card's content. and make up the bulk of the card's content.",
-            username: "Kelvin"
-        },
-        {
-            id:4,
-            title:"Fourth Post",
-            content: "Some quick example text to build on the card title and make up the bulk of the card's content. and make up the bulk of the card's content. and make up the bulk of the card's content.",
-            username: "Keynes"
-        }
-    ];
+    const [posts, setPosts] = useState({});
+
+    const fetchPosts = async () => {
+        const res = await axios.get('http://localhost:8003/posts');
+        setPosts(res.data);
+    }
+ 
+    useEffect(()=> {
+        fetchPosts();
+    }, []);
 
     const renderedPosts = Object.values(posts).map(post => {
         return (
-            <div className="card" style={{ width: '30%', marginBottom: '20px'}} key={post.id}>
-                        <h2>Post List goes down here</h2>
-
+            <div className="card" style={{ width: '48%', marginBottom: '20px'}} key={post.id}>
                 <div className="card-body">
                     <h5 className="card-title mb-4">{post.title}</h5>
                     <p className="card-text">{post.content}</p>
                     <div>
-                        <p>Posted by: <strong>{post.username}</strong></p>
+                        <p>Posted on: <strong>{post.date}</strong></p>
                     </div>
+                </div>
+                <div className='extended-section mx-3'>
+                    <CommentList comments={post.comments}/>
+                    <CommentCreate postId={post.id}/>
                 </div>
           </div>
         )
     })
 
     return (
-        <div className="d-flex flex-row flex-wrap justify-content-between">
-            {renderedPosts}
+        <div className="container mt-3">
+            <h4>Posts</h4>
+            <hr />
+            <div className="d-flex flex-row flex-wrap justify-content-between">
+                {renderedPosts}
+            </div>
         </div>
+
     )
 }
 

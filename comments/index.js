@@ -37,7 +37,7 @@ app.post("/post/:id/comments", async (req, res) => {
     let comment = new Comment({
       id:randomInt(5000),
       content: req.body.content,
-      username: req.body.username,
+      // username: req.body.username,
       post_id: req.params.id,
     });
 
@@ -45,7 +45,7 @@ app.post("/post/:id/comments", async (req, res) => {
 
     const checkExist = await Comment.findOne({
       content: req.body.content,
-      username: req.body.username,
+      id: req.params.id,
     }).exec();
 
     if (checkExist) {
@@ -60,7 +60,7 @@ app.post("/post/:id/comments", async (req, res) => {
       data: {
           id: comment.id,
           content: comment.content,
-          username:comment.username,
+          // username:comment.username,
           postId: req.params.id
       }
     })
