@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-6e8bwo-e1poxmvb7#x0sf14!j&wi02a0h!bujh5i-q2=3i4g4%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['157.230.48.115']
+ALLOWED_HOSTS = ['157.230.48.115', '127.0.0.1', 'localhost']
 
 # new commit
 # Application definition
@@ -37,12 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Local apps
     'core',
 
+    # Third-party apps
+    'corsheaders',
     'rest_framework'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -51,6 +56,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# corse origin white list
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000', 
+]
+
 
 ROOT_URLCONF = 'postsproj.urls'
 

@@ -13,7 +13,6 @@ const CommentCreate = ({postId}) => {
 
     return (
         <div className="container mt-3">
-            <h4>Posts</h4>
             <hr />
             <div className='add-comment'>
                 <form onSubmit={handleForm}>

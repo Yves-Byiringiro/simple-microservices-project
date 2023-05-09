@@ -10,6 +10,7 @@ from .models import Post
 class PostView(APIView):
     def post(self, request):
         if request.method == 'POST':
+
             form = PostSeriliazer(data=request.data)
 
             if form.is_valid():
@@ -22,6 +23,11 @@ class PostView(APIView):
 
                     if check_exist:
                         return Response({ 'message': 'post already exists' }, status=status.HTTP_409_CONFLICT)
+
+
+                    print("***********************************************")
+                    print(title, content, date)
+                    print("***********************************************")
 
                     post = Post.objects.create(title=title, content=content, date=date)
                     post.save()
@@ -50,9 +56,9 @@ class PostView(APIView):
 
             return Response({ 'posts': serialized_posts}, status=status.HTTP_200_OK)
         except Exception as e:
-            print("**********************************************")
-            print(str(e))
-            print("**********************************************")
+            # print("**********************************************")
+            # print(str(e))
+            # print("**********************************************")
             return Response({ 'message': 'something went wrong'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
@@ -64,7 +70,3 @@ class EventHandler(APIView):
                 return Response({ 'message': 'success' }, status=status.HTTP_201_CREATED)
             except Exception as e:
                 return Response({ 'message': 'something went wrong'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-            
-
-
-# Posts
