@@ -24,11 +24,6 @@ class PostView(APIView):
                     if check_exist:
                         return Response({ 'message': 'post already exists' }, status=status.HTTP_409_CONFLICT)
 
-
-                    print("***********************************************")
-                    print(title, content, date)
-                    print("***********************************************")
-
                     post = Post.objects.create(title=title, content=content, date=date)
                     post.save()
 

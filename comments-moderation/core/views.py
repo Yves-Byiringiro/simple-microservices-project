@@ -15,7 +15,7 @@ class EventHandler(APIView):
 
                 if type == 'CommentCreated':
                     content = request.data['data']['content']
-                    if 'http' in content or 'www' in content:
+                    if 'http' in content.split() or 'www' in content.split():
                         cmt_status = 'rejected'
                     else:
                         cmt_status = 'approved'
@@ -26,7 +26,7 @@ class EventHandler(APIView):
 
                     url = 'http://localhost:8002/events'
 
-                    requests.post(url, json={ 'type':'CommentModerated', 'data': {'id': id,'postId': postId, 'status':cmt_status,'content': content}})
+                    requests.post(url, json={ 'type':'CommentModerated', 'data': {'id': id,'postId': postId, 'cmt_status':cmt_status,'content': content}})
 
                 return Response({ 'message': 'success' }, status=status.HTTP_201_CREATED)
             except Exception as e:

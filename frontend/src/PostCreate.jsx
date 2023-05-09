@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 import SimpleInput from "./components/Input";
 import TextArea from "./components/TextArea";
+import Button from "./components/Button";
 
 import { countRemChars } from './utitlities/countRemChars';
 
@@ -18,9 +18,6 @@ const PostCreate = () => {
 
     const date = new Date().toDateString();
 
-
-    const navigate = useNavigate();
-
     const handleTitleInput = (e) => {
         countRemChars(setTitle, e.target.value, e.target.value.length, tmaxChars, setTcharsCount);
     }
@@ -31,12 +28,9 @@ const PostCreate = () => {
     const handleForm = async (e) => {
         e.preventDefault();
 
-        const res = await axios.post(`http://localhost:8000/posts/`, { title, content, date });
+        await axios.post(`http://localhost:8000/posts/`, { title, content, date });
         setTitle("");
         setContent("");
-
-        if (res.status === 201)
-            navigate("/"); 
     }
     return (
     <div>
@@ -59,8 +53,9 @@ const PostCreate = () => {
                         onChange={handleContentInput}
                         maxLength={250}
                         charsCount={ccharsCount}
+                        rows="4"
                     />
-                    <button className="btn btn-outline-success my-3" type="submit">Submit</button>
+                    <Button name="Submit" />
                 </form>
             </div>
         </div>

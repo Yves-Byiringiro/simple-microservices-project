@@ -37,8 +37,8 @@ app.post("/post/:id/comments", async (req, res) => {
     let comment = new Comment({
       id:randomInt(5000),
       content: req.body.content,
-      // username: req.body.username,
       post_id: req.params.id,
+      cmt_status: 'pending'
     });
 
 
@@ -60,12 +60,10 @@ app.post("/post/:id/comments", async (req, res) => {
       data: {
           id: comment.id,
           content: comment.content,
-          // username:comment.username,
-          postId: req.params.id
+          postId: req.params.id,
+          cmt_status:'pending'
       }
     })
-
-
     res.status(201).send({ message: "comment created" });
   } catch (err) {
     console.error(err.message);
@@ -74,9 +72,32 @@ app.post("/post/:id/comments", async (req, res) => {
 });
 
 
-app.post('/events', (req, res) => {
+app.post('/events', async (req, res) => {
   console.log('Event received: ', req.body.type);
 
+  const {type, data} =  req.body;
+
+    if (type === 'CommentModerated') {
+        const { id, postId, cmt_status, content } = data;
+
+        const comment = Comment.find({ id: id, post_id: postId});
+
+        // const comment = comments.find(comment => {
+        //     return comment.id = id;
+        // });
+
+        comment.cmt_status = cmt_status;
+
+        await axios.post('http://localhost:8002/events', {
+            type: 'CommentUpdated',
+            data: {
+                id,
+                postId,
+                cmt_status,
+                content
+            }
+        })
+    }
   res.send({});
 });
 

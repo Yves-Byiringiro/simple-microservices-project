@@ -9,7 +9,7 @@ const TextArea = (props) => {
                 value={props.value}
                 onChange={props.onChange}
                 className="form-control"
-                rows="4"
+                rows={props.rows}
                 required
                 maxLength={props.maxLength}
             ></textarea>
