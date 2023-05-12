@@ -8,6 +8,8 @@ const CommentList = ({ comments }) => {
         if (comment.cmt_status === "approved") {
             content = comment.content;
         }
+
+        // Currently working on it
         if (comment.cmt_status === "rejected") {
             content = "This comment has been rejected";
         }

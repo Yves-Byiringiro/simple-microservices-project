@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 
 const commentSchema = new mongoose.Schema({
-    id: {type: Number, required: true},
     content: { type:String, required: true, minlength: 5},
     post_id: { type:Number, required: true},
     cmt_status: { type: String}

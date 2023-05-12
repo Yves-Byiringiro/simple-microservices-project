@@ -30,7 +30,7 @@ const PostList = () => {
                 </div>
                 <div className='extended-section mx-3'>
                     <CommentList comments={post.comments}/>
-                    <CommentCreate postId={post.id}/>
+                    <CommentCreate postId={post.p_id}/>
                 </div>
           </div>
         )

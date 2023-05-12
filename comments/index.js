@@ -32,8 +32,6 @@ app.get("/post/:id/comments", async (req, res) => {
 
 app.post("/post/:id/comments", async (req, res) => {
   try {
-    let commentId = 1;
-
     let comment = new Comment({
       id:randomInt(5000),
       content: req.body.content,
@@ -41,27 +39,24 @@ app.post("/post/:id/comments", async (req, res) => {
       cmt_status: 'pending'
     });
 
-
-
-    const checkExist = await Comment.findOne({
+    const isExist = await Comment.findOne({
       content: req.body.content,
       id: req.params.id,
     }).exec();
 
-    if (checkExist) {
+    if (isExist) {
       return res.status(409).json({ message: "comment already exists" });
     }
 
     comment = await comment.save();
-    commentId++;
 
     await axios.post('http://localhost:8002/events', {
       type: 'CommentCreated',
       data: {
-          id: comment.id,
+          id: comment._id,
           content: comment.content,
           postId: req.params.id,
-          cmt_status:'pending'
+          cmt_status:'approved'
       }
     })
     res.status(201).send({ message: "comment created" });
@@ -77,27 +72,28 @@ app.post('/events', async (req, res) => {
 
   const {type, data} =  req.body;
 
-    if (type === 'CommentModerated') {
-        const { id, postId, cmt_status, content } = data;
+    // if (type === 'CommentModerated') {
+    //     const { id, postId, cmt_status, content } = data;
 
-        const comment = Comment.find({ id: id, post_id: postId});
+    //     console.log('------------------- status in comments (before updating it to CommentModerated)', cmt_status)
 
-        // const comment = comments.find(comment => {
-        //     return comment.id = id;
-        // });
 
-        comment.cmt_status = cmt_status;
+    //     let comment = Comment.find({ _id: id, post_id: postId});
 
-        await axios.post('http://localhost:8002/events', {
-            type: 'CommentUpdated',
-            data: {
-                id,
-                postId,
-                cmt_status,
-                content
-            }
-        })
-    }
+    //     comment.cmt_status = cmt_status;
+
+    //     console.log('------------------- status in comments (before updating it to CommentModerated - 2)', cmt_status, comment.cmt_status)
+    //     await axios.post('http://localhost:8002/events', {
+    //         type: 'CommentUpdated',
+    //         data: {
+    //             id,
+    //             postId,
+    //             cmt_status,
+    //             content
+    //         }
+    //     })
+    // }
+    
   res.send({});
 });
 
