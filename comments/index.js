@@ -72,28 +72,7 @@ app.post('/events', async (req, res) => {
 
   const {type, data} =  req.body;
 
-    // if (type === 'CommentModerated') {
-    //     const { id, postId, cmt_status, content } = data;
-
-    //     console.log('------------------- status in comments (before updating it to CommentModerated)', cmt_status)
-
-
-    //     let comment = Comment.find({ _id: id, post_id: postId});
-
-    //     comment.cmt_status = cmt_status;
-
-    //     console.log('------------------- status in comments (before updating it to CommentModerated - 2)', cmt_status, comment.cmt_status)
-    //     await axios.post('http://localhost:8002/events', {
-    //         type: 'CommentUpdated',
-    //         data: {
-    //             id,
-    //             postId,
-    //             cmt_status,
-    //             content
-    //         }
-    //     })
-    // }
-    
+  // Update comment status code 
   res.send({});
 });
 

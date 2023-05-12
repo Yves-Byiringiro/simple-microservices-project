@@ -38,9 +38,6 @@ class PostView(APIView):
 
                     return Response({ 'message':'post created' }, status=status.HTTP_201_CREATED)
                 except Exception as e:
-                    print("**********************************************")
-                    print(str(e))
-                    print("**********************************************")
                     return Response({ 'message': 'something went wrong'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             return Response({ 'message': 'invalid inputs' }, status=status.HTTP_400_BAD_REQUEST)
 
@@ -51,9 +48,6 @@ class PostView(APIView):
 
             return Response({ 'posts': serialized_posts}, status=status.HTTP_200_OK)
         except Exception as e:
-            # print("**********************************************")
-            # print(str(e))
-            # print("**********************************************")
             return Response({ 'message': 'something went wrong'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 

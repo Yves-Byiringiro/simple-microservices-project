@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-import CommentList from './CommentList';
-import CommentCreate from './CommentCreate';
+import CommentList from './components/CommentList';
+import CommentCreate from './components/CommentCreate';
 
 
 const PostList = () => {
@@ -25,7 +25,7 @@ const PostList = () => {
                     <h5 className="card-title mb-4">{post.title}</h5>
                     <p className="card-text">{post.content}</p>
                     <div>
-                        <p>Posted on: <strong>{post.date}</strong></p>
+                        <p>Posted on : <span className='fw-bolder fst-italic' style={{fontSize:"14px"}}>{post.date}</span></p>
                     </div>
                 </div>
                 <div className='extended-section mx-3'>

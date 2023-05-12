@@ -6,6 +6,3 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'date', 'content']
 
 admin.site.register(Post, PostAdmin)
-
-
-# Posts

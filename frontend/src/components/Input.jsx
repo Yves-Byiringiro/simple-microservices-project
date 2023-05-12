@@ -1,5 +1,4 @@
 import React from 'react';
-import './Style.css';
 
 const SimpleInput = (props) => {
     return (
@@ -12,7 +11,7 @@ const SimpleInput = (props) => {
                 required
                 maxLength={props.maxLength}
             />
-            <p className="rem-chars">Remaining characters {props.charsCount}</p>
+            <p className="mt-1 fst-italic text-danger" style={{fontSize:"12px"}}>Remaining characters {props.charsCount}</p>
         </div>
     )
 }

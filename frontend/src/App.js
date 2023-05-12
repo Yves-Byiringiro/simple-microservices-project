@@ -2,9 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import Header from "./components/Header";
-import PostList from "./components/PostList";
+import PostList from "./PostList";
 import PostCreate from "./PostCreate"
-
 
 const App = () => {
   return(
@@ -16,8 +15,6 @@ const App = () => {
           <Route path="/add-post" element={<PostCreate />} />
         </Routes>
       </Router>
-
-
     </div>
 
   ) 

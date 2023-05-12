@@ -13,7 +13,7 @@ const TextArea = (props) => {
                 required
                 maxLength={props.maxLength}
             ></textarea>
-            <p className="rem-chars">Remaining characters {props.charsCount}</p>
+            <p className="mt-1 fst-italic text-danger" style={{fontSize:"12px"}}>Remaining characters {props.charsCount}</p>
         </div>
     )
 }

@@ -16,7 +16,10 @@ const PostCreate = () => {
     const [cmaxChars, setCmaxChars] =  useState(250);
     const [ccharsCount, setCcharsCount] = useState(250);
 
-    const date = new Date().toDateString();
+    const time = new Date().toLocaleTimeString();
+    const today = new Date().toLocaleDateString();
+    const date = today + " , " + time;
+
 
     const handleTitleInput = (e) => {
         countRemChars(setTitle, e.target.value, e.target.value.length, tmaxChars, setTcharsCount);
