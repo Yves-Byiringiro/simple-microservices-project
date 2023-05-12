@@ -3,8 +3,8 @@ from .models import Post
 
 class PostSeriliazer(serializers.Serializer):
     title       = serializers.CharField()
-    date    = serializers.CharField()
     content     = serializers.CharField()
+    date    = serializers.CharField()
 
 
 class GetPostsSerializer(serializers.ModelSerializer):
@@ -17,9 +17,3 @@ class EventSeriliazer(serializers.Serializer):
     title       = serializers.CharField()
     content     = serializers.CharField()
     date    = serializers.CharField()
-
-
-
-
-
-# Posts

@@ -32,40 +32,33 @@ app.get("/post/:id/comments", async (req, res) => {
 
 app.post("/post/:id/comments", async (req, res) => {
   try {
-    let commentId = 1;
-
     let comment = new Comment({
       id:randomInt(5000),
       content: req.body.content,
-      username: req.body.username,
       post_id: req.params.id,
+      cmt_status: 'pending'
     });
 
-
-
-    const checkExist = await Comment.findOne({
+    const isExist = await Comment.findOne({
       content: req.body.content,
-      username: req.body.username,
+      id: req.params.id,
     }).exec();
 
-    if (checkExist) {
+    if (isExist) {
       return res.status(409).json({ message: "comment already exists" });
     }
 
     comment = await comment.save();
-    commentId++;
 
     await axios.post('http://localhost:8002/events', {
       type: 'CommentCreated',
       data: {
-          id: comment.id,
+          id: comment._id,
           content: comment.content,
-          username:comment.username,
-          postId: req.params.id
+          postId: req.params.id,
+          cmt_status:'approved'
       }
     })
-
-
     res.status(201).send({ message: "comment created" });
   } catch (err) {
     console.error(err.message);
@@ -74,9 +67,12 @@ app.post("/post/:id/comments", async (req, res) => {
 });
 
 
-app.post('/events', (req, res) => {
+app.post('/events', async (req, res) => {
   console.log('Event received: ', req.body.type);
 
+  const {type, data} =  req.body;
+
+  // Update comment status code 
   res.send({});
 });
 
