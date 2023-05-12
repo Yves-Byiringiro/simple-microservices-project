@@ -369,8 +369,8 @@ posts/Pipfile
 posts/Pipfile.lock
 posts/db.sqlite3
 
-comments-moderation/*
-# comments-moderation/core/migrations/*
-# comments-moderation/Pipfile
-# comments-moderation/Pipfile.lock
-# comments-moderationcomments-moderation/db.sqlite3
+
+comments-moderation/core/migrations/*
+comments-moderation/Pipfile
+comments-moderation/Pipfile.lock
+comments-moderationcomments-moderation/db.sqlite3
