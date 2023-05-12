@@ -76,7 +76,6 @@ app.post('/events', async (req, res) => {
   res.send({});
 });
 
-
 app.listen(8001, () => {
   console.log("Listening on port 8001");
 });
