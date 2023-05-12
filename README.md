@@ -24,7 +24,7 @@ This service handles the creation and retrieval of comments. It was built using 
 ### comments-moderation
 This service handles the update of comments status. It was built using the following technologies: Python (Django) and SQLite. It runs on port 8004.
 
-**I am still working on it** 
+`**I am still working on it**`
 
     To test the service follow the followig instructions:
 
