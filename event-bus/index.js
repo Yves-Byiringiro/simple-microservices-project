@@ -22,8 +22,8 @@ app.post("/events", (req, res) => {
     console.log(err.message);
   });
 
-  // comments moderation code
-  
+  // make a request on comments moderation service
+
   // axios.post("http://localhost:8004/events", event).catch((err) => {
   //   console.log(err.message);
   // });
