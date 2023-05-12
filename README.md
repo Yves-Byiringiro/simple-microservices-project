@@ -22,12 +22,15 @@ This service handles the update of comments status. It was built using the follo
 
 **I am still working on it** 
 
-To test the service follow the followig instructions:
-    run: pipenv shell  (make sure you downloaded pipenv in your local machine)
-         pipenv install -r requirements  
-         python manage.py makemigrations
-         python manage.py migrate
-         python manage.py runserver 8004
+    To test the service follow the followig instructions:
+
+    run: 
+    	pipenv shell  (make sure you downloaded pipenv in your local machine)
+    	pipenv install -r requirements 
+    	python manage.py makemigrations
+        python manage.py migrate
+        python manage.py runserver 8004
+
 
 ### event-bus
 This service handles the events come from different services. It was built using the following technologies: JavaScript (Node.js). It runs on port 8002.
