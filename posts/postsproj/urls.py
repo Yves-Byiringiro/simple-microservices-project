@@ -9,5 +9,3 @@ urlpatterns = [
     path('posts/', PostView.as_view()),
     path('events', EventHandler.as_view())
 ]
-
-# new commit
