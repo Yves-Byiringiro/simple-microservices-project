@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const axios = require("axios");
-const ObjectId = mongoose.Types.ObjectId;
 
 const config = require('./config/mongodb.json');
 const { Post } = require("./models/post");
