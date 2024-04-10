@@ -53,7 +53,7 @@ This service handles the creation and retrieval of posts and comments, syncing t
     	npm install
     	npm start
 
-### frontend
+### frontendApp
 This service handles the frontend (rendering posts and comments, allow users to add post and comment, navigate in pages). It was built using React JS. It runs on port 3000.
 
     To test the service follow the followig instructions:
