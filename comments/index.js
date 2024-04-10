@@ -3,13 +3,13 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const axios =  require("axios");
 const { randomInt } = require('crypto');
-const config= require('./config/mongodb.json');
-
 const mongoose = require("mongoose");
+require('dotenv').config();
+
 const { Comment } = require("./models/comment");
 
-const mongopwd = config.mongodb.password;
-const uri = `mongodb+srv://ybyiring:${mongopwd}@cluster0.j4iybfs.mongodb.net/simpleblogdb?retryWrites=true&w=majority`
+const port = process.env.PORT
+const uri = process.env.DB_CONNECTION
 
 mongoose
   .connect(uri)
@@ -76,6 +76,6 @@ app.post('/events', async (req, res) => {
   res.send({});
 });
 
-app.listen(8001, () => {
+app.listen(port, () => {
   console.log("Listening on port 8001");
 });
