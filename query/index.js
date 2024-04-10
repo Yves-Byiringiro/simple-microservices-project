@@ -3,8 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const axios = require("axios");
+require('dotenv').config();
 
-const config = require('./config/mongodb.json');
 const { Post } = require("./models/post");
 
 const app = express();
@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-const mongopwd = config.mongodb.password;
-const uri = `mongodb+srv://ybyiring:${mongopwd}@cluster0.j4iybfs.mongodb.net/querydb?retryWrites=true&w=majority`
+const port = process.env.PORT
+const uri = process.env.DB_CONNECTION
 
 mongoose
   .connect(uri)
@@ -53,8 +53,8 @@ app.post("/events", async(req, res) => {
 });
 
 
-app.listen(8003, async () => {
-  console.log("Listening on port 8003");
+app.listen(port, async () => {
+  console.log(`Listening on port ${port}`);
   try {
     const res = await axios.get("http://localhost:8002/events");
 

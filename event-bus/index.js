@@ -2,6 +2,9 @@ const express = require("express");
 const axios = require("axios");
 const bodyParser = require("body-parser");
 
+require('dotenv').config();
+
+const port = process.env.PORT
 const app = express();
 app.use(bodyParser.json());
 
@@ -35,6 +38,6 @@ app.get("/events", (req, res) => {
   res.send(events);
 });
 
-app.listen(8002, () => {
-  console.log("Listening on port 8002");
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`);
 });
