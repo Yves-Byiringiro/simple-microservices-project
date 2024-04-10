@@ -33,7 +33,7 @@ app.get("/post/:id/comments", async (req, res) => {
 app.post("/post/:id/comments", async (req, res) => {
   try {
     let comment = new Comment({
-      id:randomInt(5000),
+      _id: new mongoose.Types.ObjectId(),
       content: req.body.content,
       post_id: req.params.id,
       cmt_status: 'pending'

@@ -20,8 +20,6 @@ const PostCreate = () => {
     const today = new Date().toLocaleDateString();
     const date = today + " , " + time;
 
-    console.log(typeof(date))
-
 
     const handleTitleInput = (e) => {
         countRemChars(setTitle, e.target.value, e.target.value.length, tmaxChars, setTcharsCount);
